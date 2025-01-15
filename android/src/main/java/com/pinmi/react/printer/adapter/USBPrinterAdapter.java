@@ -62,11 +62,13 @@ public class USBPrinterAdapter implements PrinterAdapter{
             if(ACTION_USB_PERMISSION.equals(action)){
                 synchronized (this) {
                     UsbDevice usbDevice = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
-                    if(intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)){
-                        Log.i(LOG_TAG, "success to grant permission for device "+usbDevice.getDeviceId()+", vendor_id: "+ usbDevice.getVendorId()+ " product_id: " + usbDevice.getProductId());
-                        mUsbDevice = usbDevice;
-                    }else {
-                        Toast.makeText(context, "用户拒绝获取USB设备权限" + usbDevice.getDeviceName(), Toast.LENGTH_LONG).show();
+                    if(usbDevice != null){
+                        if(intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)){
+                            Log.i(LOG_TAG, "success to grant permission for device "+usbDevice.getDeviceId()+", vendor_id: "+ usbDevice.getVendorId()+ " product_id: " + usbDevice.getProductId());
+                            mUsbDevice = usbDevice;
+                        }else {
+                            Toast.makeText(context, "用户拒绝获取USB设备权限" + usbDevice.getDeviceName(), Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
             } else if(UsbManager.ACTION_USB_DEVICE_DETACHED.equals(action)){
