@@ -67,7 +67,7 @@ public class USBPrinterAdapter implements PrinterAdapter{
                             Log.i(LOG_TAG, "success to grant permission for device "+usbDevice.getDeviceId()+", vendor_id: "+ usbDevice.getVendorId()+ " product_id: " + usbDevice.getProductId());
                             mUsbDevice = usbDevice;
                         }else {
-                            Toast.makeText(context, "用户拒绝获取USB设备权限" + usbDevice.getDeviceName(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "用户拒绝获取USB设备权限", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
